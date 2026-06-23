@@ -45,6 +45,51 @@ public class LinkedList {
         curr.next = newNode;
 
     }
+    public static Node removeStart(Node head){
+        if(head == null){
+            return null;
+        }
+        Node curr = head;
+        head = curr.next;
+        curr.next = null;
+        return head;
+    }
+    public static void removeLast(Node head){
+        if(head == null || head.next == null){
+            return;
+        }
+        Node curr = head;
+
+        while(curr.next.next != null){
+            curr = curr.next;
+        }
+        curr.next = null;
+    }
+    public static Node removePos(Node head,int pos){
+        if(head == null){
+            return null;
+        }
+
+        Node curr = head;
+
+        if(pos == 1){
+            head = curr.next;
+            curr.next = null;
+            return head;
+        }
+        int count = 1;
+        while(count < pos -1 && curr != null){
+            curr = curr.next;
+            count++;
+        }
+        if(curr == null){
+            return head;
+        }
+        Node forw = curr.next;
+        curr.next = curr.next.next;
+        forw.next = null;
+        return head;
+    }
     public static void main(String[] args){
         Node head = null;
 
@@ -58,6 +103,18 @@ public class LinkedList {
 
         System.out.println();
         addAtPos(head,4,35);
+        display(head);
+
+//        System.out.println();
+//       head = removeStart(head);
+//        display(head);
+
+        System.out.println();
+
+//        removeLast(head);
+//        display(head);
+
+        head = removePos(head,1);
         display(head);
 
 

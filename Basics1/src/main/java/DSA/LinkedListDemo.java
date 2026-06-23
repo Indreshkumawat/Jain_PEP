@@ -72,6 +72,35 @@ public class LinkedListDemo {
 
         return head;
     }
+
+    public static Node deleteFromPos(Node head,int pos){
+        //if head is null means empty list
+        if(head == null){
+            return head;
+        }
+        // pos is 1 or we have one element in the ll
+        if(pos == 1){
+            return head.next;
+        }
+
+        Node curr = head;
+        int count = 1;
+        while(count < pos -1 && curr != null){
+            count++;
+            curr = curr.next;
+        }
+        // if pos is larger than the number of elements
+        if(curr == null){
+            return head;
+        }
+        Node forw = curr.next;
+
+        curr.next = forw.next;
+        forw.next = null;
+
+        return head;
+
+    }
     public static void main(String[] args){
         Node head = null;
 
@@ -90,7 +119,10 @@ public class LinkedListDemo {
 //        head = deleteStart(head,10);
 //        display(head);
 
-        head = deleteFromLast(head);
+//        head = deleteFromLast(head);
+//        display(head);
+//
+        head = deleteFromPos(head,10);
         display(head);
 
     }
