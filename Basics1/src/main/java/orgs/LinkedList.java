@@ -1,4 +1,4 @@
-package DSA;
+package orgs;
 
 class Node{
     int data;
@@ -9,7 +9,7 @@ class Node{
         this.next = null;
     }
 }
-public class LinkedListDemo {
+public class LinkedList {
     public static void display(Node head){
         Node temp = head;
         while(temp != null){
@@ -17,7 +17,7 @@ public class LinkedListDemo {
             temp = temp.next;
         }
     }
-    public static Node addInStart(Node head,int data){
+    public static Node addInStart(Node head, int data){
         Node newNode = new Node(data);
         if(head == null){
             return newNode;
@@ -25,7 +25,7 @@ public class LinkedListDemo {
         newNode.next = head;
         return newNode;
     }
-    public static void addAtLast(Node head,int data){
+    public static void addAtLast(Node head, int data){
         Node newNode = new Node(data);
         Node temp = head;
         while(temp.next != null){
@@ -33,44 +33,17 @@ public class LinkedListDemo {
         }
         temp.next = newNode;
     }
-    public static void addAtPos(Node head,int data,int pos){
-        if(head == null){
-            return;
-        }
+    public static void addAtPos(Node head,int pos,int data){
         Node newNode = new Node(data);
         Node curr = head;
         int count = 1;
-        while(count< pos - 1 && curr != null){
+        while(count < pos -1){
             curr = curr.next;
             count++;
-        }
-        if(curr == null){
-            return;
         }
         newNode.next = curr.next;
         curr.next = newNode;
 
-    }
-    public static Node deleteStart(Node head,int data){
-        if(head == null){
-           return null;
-        }
-        Node curr = head.next;
-        head.next = null;
-        head = curr;
-        return head;
-    }
-    public static Node deleteFromLast(Node head){
-        if(head == null || head.next == null){
-            return null;
-        }
-        Node curr = head;
-        while(curr.next.next != null){
-            curr = curr.next;
-        }
-        curr.next = null;
-
-        return head;
     }
     public static void main(String[] args){
         Node head = null;
@@ -82,16 +55,11 @@ public class LinkedListDemo {
         addAtLast(head,40);
         addAtLast(head,50);
         display(head);
-        System.out.println();
-        addAtPos(head,25,20);
-        display(head);
 
         System.out.println();
-//        head = deleteStart(head,10);
-//        display(head);
-
-        head = deleteFromLast(head);
+        addAtPos(head,4,35);
         display(head);
+
 
     }
 }
