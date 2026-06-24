@@ -17,7 +17,7 @@ public class LinkedListDemo {
             temp = temp.next;
         }
     }
-    public static Node addInStart(Node head,int data){
+    public static Node addInStart(Node head, int data){
         Node newNode = new Node(data);
         if(head == null){
             return newNode;
@@ -25,7 +25,7 @@ public class LinkedListDemo {
         newNode.next = head;
         return newNode;
     }
-    public static void addAtLast(Node head,int data){
+    public static void addAtLast(Node head, int data){
         Node newNode = new Node(data);
         Node temp = head;
         while(temp.next != null){
@@ -33,7 +33,7 @@ public class LinkedListDemo {
         }
         temp.next = newNode;
     }
-    public static void addAtPos(Node head,int data,int pos){
+    public static void addAtPos(Node head, int data, int pos){
         if(head == null){
             return;
         }
@@ -51,7 +51,7 @@ public class LinkedListDemo {
         curr.next = newNode;
 
     }
-    public static Node deleteStart(Node head,int data){
+    public static Node deleteStart(Node head, int data){
         if(head == null){
            return null;
         }
@@ -73,7 +73,7 @@ public class LinkedListDemo {
         return head;
     }
 
-    public static Node deleteFromPos(Node head,int pos){
+    public static Node deleteFromPos(Node head, int pos){
         //if head is null means empty list
         if(head == null){
             return head;
