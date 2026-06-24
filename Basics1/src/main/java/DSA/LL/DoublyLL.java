@@ -55,7 +55,7 @@ public class DoublyLL {
         }
         Node temp = head;
         while(temp.next != null){
-           temp = temp.next;
+            temp = temp.next;
         }
         temp.next = newNode;
         newNode.prev = temp;
@@ -64,13 +64,15 @@ public class DoublyLL {
 
     public static Node addAtPos(Node head,int data,int pos){
         Node newNode = new Node(data);
+
         if(pos == 1){
             return addAtStart(head,data);
-
         }
+
         int count = 1;
         Node temp = head;
-        while(count < pos -1 && temp != null){
+
+        while(count< pos -1 && temp != null){
             temp = temp.next;
             count++;
         }
@@ -78,17 +80,67 @@ public class DoublyLL {
         if(temp == null){
             return head;
         }
+
         newNode.next = temp.next;
         newNode.prev = temp;
 
         if(temp.next != null){
-            temp.next.prev = newNode;
+         temp.next.prev = newNode;
         }
 
         temp.next = newNode;
+        return head;
+    }
+    public static Node deleteStart(Node head){
+
+        if(head == null || head.next == null){
+            return null;
+        }
+
+        Node curr = head;
+        head = head.next;
+
+        curr.next = null;
+        head.prev = null;
 
         return head;
     }
+    public static Node deleteEnd(Node head){
+
+        if(head == null || head.next == null){
+            return null;
+        }
+        Node temp = head;
+        while(temp.next.next != null){
+            temp = temp.next;
+        }
+        temp.next.prev = null;
+        temp.next = null;
+        return head;
+    }
+
+    public static Node deletePos(Node head,int pos){
+        if(head == null){
+            return null;
+        }
+        if(pos == 1){
+            return deleteStart(head);
+        }
+        Node temp = head;
+        int count = 1;
+        while(count< pos ){
+            count++;
+            temp = temp.next;
+        }
+        if(temp.next != null){
+            temp.next.prev = temp.prev;
+        }
+
+        temp.prev.next = temp.next;
+
+        return head;
+    }
+
     public static void main(String[] args){
         Node head = null;
 
@@ -104,23 +156,16 @@ public class DoublyLL {
         head = addAtStart(head,5);
         traverseForw(head);
 
-        System.out.println();
-        head = addAtLast(head,20);
-        traverseForw(head);
-        System.out.println();
-        traverseBack(head);
-
-
-        System.out.println();
-        head = addAtPos(head,12,20);
-
+        head = addAtPos(head,33,2);
         traverseForw(head);
 
+//        System.out.println();
+//        head = deleteStart(head);
+//        traverseForw(head);
 
-
-
-
-
+        System.out.println();
+        head = deletePos(head,1);
+        traverseForw(head);
 
 
     }
