@@ -84,22 +84,85 @@ public class CircularLL {
         return head;
     }
 
+    public static Node deleteFromBeginning(Node head){
+
+        if(head == null || head.next == head){
+            return null;
+        }
+        Node temp = head;
+        Node curr = head;
+
+        while(temp.next != head){
+            temp = temp.next;
+        }
+        temp.next = head.next;
+        head = head.next;
+        curr.next = null;
+
+        return head;
+    }
+
+    public static Node deleteFromLast(Node head){
+        if(head == null || head.next == head){
+            return null;
+        }
+
+        Node temp = head;
+
+        while(temp.next.next != head){
+            temp = temp.next;
+        }
+        temp.next = head;
+        return head;
+    }
+
+    public static Node deleteFromPos(Node head,int pos){
+        if(head == null){
+            return null;
+        }
+        if(pos == 1){
+            return deleteFromBeginning(head);
+        }
+        Node temp = head;
+        int count = 1;
+        while(count < pos -1 && temp.next != head){
+            temp = temp.next;
+            count++;
+        }
+        if(temp.next == head){
+            return head;
+        }
+        temp.next = temp.next.next;
+
+        return head;
+    }
+
+
     public static void main(String [] args){
        Node head = null;
 
        head = addAtStart(head,10);
-        head = addAtStart(head,20);
-
-        display(head);
+//        head = addAtStart(head,20);
+//
+//        display(head);
+//
+//        System.out.println();
+//
+//        head = addAtLast(head,30);
+//        head = addAtLast(head,20);
+//        display(head);
+//
+//        System.out.println();
+//        head = addAtPos(head,40,1);
+//        display(head);
 
         System.out.println();
+//        head = deleteFromBeginning(head);
+//        display(head);
 
-        head = addAtLast(head,30);
-        head = addAtLast(head,20);
-        display(head);
-
-        System.out.println();
-        head = addAtPos(head,40,1);
+//        head = deleteFromLast(head);
+//        display(head);
+        head = deleteFromPos(head,1);
         display(head);
 
     }
