@@ -11,6 +11,10 @@ class Node{
 }
 public class DoublyLL {
     public static void traverseForw(Node head){
+        if(head == null){
+            System.out.println("List is empty");
+            return;
+        }
         Node temp = head;
         while(temp != null){
             System.out.println(temp.data);
@@ -18,7 +22,10 @@ public class DoublyLL {
         }
     }
     public static void traverseBack(Node head){
-
+        if(head == null){
+            System.out.println("List is empty");
+            return;
+        }
         Node temp = head;
         while(temp.next != null){
             temp = temp.next;
@@ -30,26 +37,84 @@ public class DoublyLL {
         }
 
     }
+    public static Node addAtStart(Node head,int data){
+        Node newNode = new Node(data);
+
+        if(head == null){
+            return newNode;
+        }
+        newNode.next = head;
+        head.prev = newNode;
+
+        return newNode;
+    }
+    public static Node addAtLast(Node head,int data){
+        Node newNode = new Node(data);
+        if(head == null){
+            return newNode;
+        }
+        Node temp = head;
+        while(temp.next != null){
+           temp = temp.next;
+        }
+        temp.next = newNode;
+        newNode.prev = temp;
+        return head;
+    }
+
+    public static Node addAtPos(Node head,int data,int pos){
+        Node newNode = new Node(data);
+        if(pos == 1){
+            return addAtStart(head,data);
+
+        }
+        int count = 1;
+        Node temp = head;
+        while(count < pos -1 && temp != null){
+            temp = temp.next;
+            count++;
+        }
+
+        if(temp == null){
+            return head;
+        }
+        newNode.next = temp.next;
+        newNode.prev = temp;
+
+        if(temp.next != null){
+            temp.next.prev = newNode;
+        }
+
+        temp.next = newNode;
+
+        return head;
+    }
     public static void main(String[] args){
         Node head = null;
-        Node n1 = new Node(10);
-
-        head = n1;
-
-        Node n2 = new Node(20);
-        Node n3 = new Node(30);
-        Node n4 = new Node(40);
-
-        n1.next = n2;
-        n2.next = n3;
-        n2.prev = n1;
-        n3.next = n4;
-        n3.prev = n2;
-        n4.prev = n3;
 
         traverseForw(head);
         System.out.println();
         traverseBack(head);
+
+        head = addAtStart(head,10);
+        traverseForw(head);
+
+        System.out.println();
+
+        head = addAtStart(head,5);
+        traverseForw(head);
+
+        System.out.println();
+        head = addAtLast(head,20);
+        traverseForw(head);
+        System.out.println();
+        traverseBack(head);
+
+
+        System.out.println();
+        head = addAtPos(head,12,20);
+
+        traverseForw(head);
 
 
 
