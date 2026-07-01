@@ -70,6 +70,26 @@ class Heap{
             index = largest;
         }
     }
+    void heapify(int[] nums,int n,int i){
+        int left = 2 * i + 1;
+        int right = 2 * i + 2;
+
+        int largest = i;
+
+        if(left < n && nums[left] > nums[largest]){
+            largest = left;
+        }
+        if(right < n && nums[right] > nums[largest]){
+            largest = right;
+        }
+
+        if(largest != i){
+            int temp = nums[i];
+            nums[i] = nums[largest];
+            nums[largest] = temp;
+            heapify(nums,n,largest);
+        }
+    }
 }
 public class HeapImpl {
     public static void main(String[] args) {
@@ -89,6 +109,17 @@ public class HeapImpl {
         System.out.println();
 
         heap.printHeap();
+
+        int []nums = {2,12,24,3,25,78,29};
+        int n = 7;
+
+        for(int i = n/2-1;i>=0;i--){
+            heap.heapify(nums,n,i);
+        }
+        System.out.println();
+        for(int i = 0;i<n;i++){
+            System.out.println(nums[i]);
+        }
 
 
     }
