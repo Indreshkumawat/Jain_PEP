@@ -1,5 +1,7 @@
 package DSA;
 
+import java.util.PriorityQueue;
+
 class Heap{
     int arr[];
     int size;
@@ -93,33 +95,52 @@ class Heap{
 }
 public class HeapImpl {
     public static void main(String[] args) {
-        Heap heap = new Heap();
+//        Heap heap = new Heap();
+//
+//        heap.insertVal(10);
+//        heap.insertVal(20);
+//        heap.insertVal(30);
+//        heap.insertVal(40);
+//        heap.insertVal(4);
+//        heap.insertVal(100);
+//
+//        heap.printHeap();
+//
+//        heap.deleteFromHeap();
+//
+//        System.out.println();
+//
+//        heap.printHeap();
+//
+//        int []nums = {2,12,24,3,25,78,29};
+//        int n = 7;
+//
+//        for(int i = n/2-1;i>=0;i--){
+//            heap.heapify(nums,n,i);
+//        }
+//        System.out.println();
+//        for(int i = 0;i<n;i++){
+//            System.out.println(nums[i]);
+//        }
 
-        heap.insertVal(10);
-        heap.insertVal(20);
-        heap.insertVal(30);
-        heap.insertVal(40);
-        heap.insertVal(4);
-        heap.insertVal(100);
+        PriorityQueue<Integer> pq = new PriorityQueue<>();
 
-        heap.printHeap();
+        pq.add(10);
+        pq.add(4);
+        pq.add(40);
+        pq.add(29);
+        pq.add(13);
+        pq.add(2);
 
-        heap.deleteFromHeap();
+        System.out.println("Hello demoo");
 
-        System.out.println();
 
-        heap.printHeap();
+        System.out.println(pq.peek());
 
-        int []nums = {2,12,24,3,25,78,29};
-        int n = 7;
+        pq.poll();
+        System.out.println(pq.peek());
 
-        for(int i = n/2-1;i>=0;i--){
-            heap.heapify(nums,n,i);
-        }
-        System.out.println();
-        for(int i = 0;i<n;i++){
-            System.out.println(nums[i]);
-        }
+
 
 
     }
