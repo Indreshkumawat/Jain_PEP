@@ -40,6 +40,19 @@ class Graph{
         }
     }
 
+    void DFS(int node, boolean []visited, ArrayList<Integer> ans){
+        visited[node] = true;
+        ans.add(node);
+
+        for(int i = 0;i<vertices;i++){
+            if(adj[node][i] == 1 && !visited[node]){
+                DFS(i,visited,ans);
+            }
+        }
+
+
+    }
+
     public void print(){
         for(int i  = 0;i<vertices;i++){
             for(int j = 0;j<vertices;j++){
@@ -78,11 +91,21 @@ public class GraphImpl {
 
          boolean visited[] = new boolean[n];
 
-         graph.BFS(0,visited,ans);
+//         graph.BFS(0,visited,ans);
+//
+//         for(int i : ans){
+//             System.out.print(i + " ");
+//         }
 
-         for(int i : ans){
+         //DFS
+
+        graph.DFS(0,visited,ans);
+
+        for(int i : ans){
              System.out.print(i + " ");
          }
+
+
 
 
     }
