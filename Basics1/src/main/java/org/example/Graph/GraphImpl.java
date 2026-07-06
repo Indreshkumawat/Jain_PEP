@@ -45,7 +45,7 @@ class Graph{
         ans.add(node);
 
         for(int i = 0;i<vertices;i++){
-            if(adj[node][i] == 1 && !visited[node]){
+            if(adj[node][i] == 1 && !visited[i]){
                 DFS(i,visited,ans);
             }
         }
