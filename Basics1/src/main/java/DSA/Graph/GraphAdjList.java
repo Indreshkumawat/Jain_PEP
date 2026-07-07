@@ -2,6 +2,10 @@ package DSA.Graph;
 
 import java.util.*;
 
+class Pair{
+    int data;
+    int node;
+}
 class GraphList{
     HashMap<Integer, ArrayList<Integer>> adj = new HashMap<>();
 
@@ -66,6 +70,8 @@ class GraphList{
             System.out.println(i + " ");
         }
     }
+
+
 }
 public class GraphAdjList {
     public static void main(String[] args) {
