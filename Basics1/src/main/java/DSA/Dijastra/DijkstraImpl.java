@@ -1,18 +1,15 @@
 package DSA.Dijastra;
 
-
 import java.util.*;
 
 class Pair{
-    int weight;
     int node;
-
+    int weight;
     Pair(int node,int weight){
         this.node = node;
         this.weight = weight;
     }
 }
-
 class GraphList{
     HashMap<Integer, ArrayList<Pair>> adj = new HashMap<>();
 
@@ -40,18 +37,17 @@ class GraphList{
 //    }
 
     void dijkstra(int start,int n){
-        PriorityQueue<Pair> pq = new PriorityQueue<>((a,b)-> a.weight - b.weight);
-
+        PriorityQueue<Pair> pq = new PriorityQueue<>((a,b)->a.weight - b.weight);
         int dist[] = new int[n];
 
         Arrays.fill(dist,Integer.MAX_VALUE);
+
         dist[start] = 0;
 
         pq.add(new Pair(start,0));
 
         while(!pq.isEmpty()){
             Pair curr = pq.poll();
-
             int node = curr.node;
             int weight = curr.weight;
 
@@ -60,21 +56,23 @@ class GraphList{
             }
 
             for(Pair neigh : adj.getOrDefault(node,new ArrayList<>())){
-
-                if(dist[node] + neigh.weight < dist[neigh.weight]){
+                if(dist[node] + neigh.weight < dist[neigh.node]){
                     dist[neigh.node] = dist[node] + neigh.weight;
-
-                    pq.add(new Pair(neigh.node,dist[neigh.node]));
+                    pq.add(new Pair(neigh.node, dist[neigh.node]));
                 }
             }
         }
 
-        for(int i = 0;i<n;i++){
-            System.out.println(dist[i]+" ");
+        for(int i: dist){
+            System.out.println(i + " ");
         }
+
     }
+
+
 }
-public class DijakstraImpl {
+
+public class DijkstraImpl {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.println("enter no of node you need");
@@ -89,10 +87,12 @@ public class DijakstraImpl {
             System.out.println("Enter u and v for edge");
             int u = sc.nextInt();
             int v = sc.nextInt();
-            graph.addEdge(u,v,false);
+            System.out.println("enter weight");
+            int weight = sc.nextInt();
+            graph.addEdge(u,v,weight,false);
         }
 
-        graph.print();
+        graph.dijkstra(0,n);
 
     }
 }
