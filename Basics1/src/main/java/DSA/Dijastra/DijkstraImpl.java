@@ -69,6 +69,33 @@ class GraphList{
 
     }
 
+    void prims(int start,int n){
+        boolean[] visited = new boolean[n];
+
+        PriorityQueue<Pair> pq = new PriorityQueue<>((a,b)->a.weight - b.weight);
+
+        pq.add(new Pair(start,0));
+
+        int minCost = 0;
+
+        while(!pq.isEmpty()){
+            Pair curr = pq.poll();
+
+            if(visited[curr.node]){
+                continue;
+            }
+
+            minCost += curr.weight;
+
+            for(Pair neigh : adj.getOrDefault(curr.node,new ArrayList<>())){
+                if(!visited[neigh.node]){
+                    pq.add(new Pair(neigh.node, neigh.weight));
+                }
+            }
+
+        }
+    }
+
 
 }
 
